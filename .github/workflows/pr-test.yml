@@ -7,7 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - run: |
+    - name:  build step
+      id: build_id
+      run: |
         echo " test-pr steps"
         exit 1
-    - uses: Dayanandachari/actions_repo@main
+
+    - name: The demo step has failed 
+      uses: Dayanandachari/actions_repo@main
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
