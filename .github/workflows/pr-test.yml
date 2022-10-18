@@ -19,13 +19,8 @@ jobs:
         curl \
         -X POST \
         -H "Accept: application/vnd.github+json" \
-<<<<<<< HEAD
         -H "Authorization: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" \
         https://api.github.com/repos/OWNER/REPO/pulls/PULL_NUMBER/comments \
-=======
-        -H "Authorization: Bearer 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" \
-        https://api.github.com/repos/Dayanandachari/Github_action_repo/pulls/PULL_NUMBER/comments \
->>>>>>> 4780a904f894143fd0f79241c652b3dd86d009ae
         -d '{"body":"Great stuff!","commit_id":"6dcb09b5b57875f334f61aebed695e2e4193db5e","path":"file1.txt","start_line":1,"start_side":"RIGHT","line":2,"side":"RIGHT"}'
     
     - uses: Dayanandachari/actions_repo@main
