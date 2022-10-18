@@ -1,0 +1,10 @@
+name: PR test workflow
+
+on: [ pull_request]
+
+jobs:
+  test-pr: 
+    runs-on: ubuntu-latest
+
+    steps: 
+    - uses: Dayanandachari/actions_repo@main
