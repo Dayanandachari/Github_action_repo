@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - run: 
+    - run: |
         echo " test-pr steps"
         exit 1
     - uses: Dayanandachari/actions_repo@main
