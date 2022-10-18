@@ -13,6 +13,5 @@ jobs:
         echo " test-pr steps"
         exit 1
 
-    - name: Build step has failed 
-      uses: Dayanandachari/actions_repo@main
+    - uses: Dayanandachari/actions_repo@main
       if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
