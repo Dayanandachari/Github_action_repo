@@ -16,5 +16,4 @@ jobs:
     - uses: Dayanandachari/actions_repo@main
       #if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
       if: ${{ success() && steps.build_id.conclusion == 'failure' }}
-      run: 
-        echo "last step failed"
+      
