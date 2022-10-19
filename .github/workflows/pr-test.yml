@@ -20,8 +20,9 @@ jobs:
       #if: ${{ success() && steps.build_id.conclusion == 'failure' }}
 
     - name: Pr message test 
-      #id: pr_test
+      id: pr_test
       #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
+      if: ${{ success() }}
       env:
        PULL_NUMBER: ${{ github.event.pull_request.number }}
       run: |
