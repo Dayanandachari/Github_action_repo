@@ -30,6 +30,7 @@ jobs:
           core.exportVariable('PULL_NUMBER', prNumber); 
     
     - name: Get Pull Request Number
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
       id: pr
       run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
       env:
