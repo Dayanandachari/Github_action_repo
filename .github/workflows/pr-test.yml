@@ -41,9 +41,13 @@ jobs:
       #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
       # if: ${{ success() }}
       env:
-       PULL_NUMBER: ${{ github.event.pull_request.pull_request.url }}
+       PULL_NUMBER: "${{ github.event.pull_request.url }}"
       run: |
         echo $PULL_NUMBER
+        echo "${{ github.event.pull_request.pull_request.url }}"
+        echo "${{ github.event.pull_request.pull_request.number }}"
+        echo "${{ github.event.pull_request.url }}"
+        
         # curl \
         # -X POST \
         # -H "Accept: application/vnd.github+json" \
