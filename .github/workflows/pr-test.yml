@@ -21,6 +21,7 @@ jobs:
     
     - name: Test
       uses: actions/github-script@0.3.0
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
       with:
         github-token: ${{github.token}}
         script: |
