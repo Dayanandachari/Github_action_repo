@@ -31,7 +31,7 @@ jobs:
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: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" \
         https://api.github.com/repos/Dayanandachari/Github_action_repo/pulls/PULL_NUMBER/comments \
-        -d '{"body":"Great stuff!","commit_id":"6efc91e","path":"file1.txt","start_line":1,"start_side":"RIGHT","line":2,"side":"RIGHT"}'
+        -d '{"body":"Great stuff!","commit_id":"3de9c95287ceda7f6f8528bda9195aca8c34df9b","path":"Github_action_repo/.github/workflows/file.txt","start_line":1,"start_side":"RIGHT","line":2,"side":"RIGHT"}'
       shell: bash
-       
+      
       
