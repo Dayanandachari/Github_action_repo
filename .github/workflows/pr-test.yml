@@ -10,14 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - name:  build step
-      id: build_id
-      run: |
-        echo " test-pr steps" 
-        exit 1
-    - uses: Dayanandachari/actions_repo@main
-      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
-      #if: ${{ success() && steps.build_id.conclusion == 'failure' }}
+    # - name:  build step
+    #   id: build_id
+    #   run: |
+    #     echo " test-pr steps" 
+    #     exit 1
+    # - uses: Dayanandachari/actions_repo@main
+    #   if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
     
     # - name: Test
     #   uses: actions/github-script@0.3.0
@@ -36,19 +35,19 @@ jobs:
     #   env:
     #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-    # - name: Pr message test 
-    #   id: pr_test
-    #   #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
-    #   # if: ${{ success() }}
-    #   env:
-    #    PR_URL: "${{ github.event.pull_request.url }}"
-    #   run: |        
-    #       curl \
-    #       -X POST \
-    #       -H "Accept: application/vnd.github+json" \
-    #       -H "Authorization: token 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" \
-    #       https://api.github.com/repos/Dayanandachari/Github_action_repo/issues/5/comments \
-    #       -d '{"body":"**Testing** 123"}'
-    #   shell: bash
+    - name: Pr message test 
+      id: pr_test
+      #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
+      # if: ${{ success() }}
+      env:
+       PR_URL: "${{ github.event.pull_request.url }}"
+      run: |        
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: token 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" \
+          https://api.github.com/repos/Dayanandachari/Github_action_repo/issues/5/comments \
+          -d '{"body":"**Testing** 123"}'
+      shell: bash
       
       
