@@ -18,13 +18,22 @@ jobs:
     - uses: Dayanandachari/actions_repo@main
       if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
       #if: ${{ success() && steps.build_id.conclusion == 'failure' }}
+    
+    - name: Test
+      uses: actions/github-script@0.3.0
+      with:
+        github-token: ${{github.token}}
+        script: |
+          const core = require('@actions/core')
+          const prNumber = context.payload.number;
+          core.exportVariable('PULL_NUMBER', prNumber);
 
     - name: Pr message test 
       id: pr_test
       #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
       if: ${{ success() }}
-      env:
-       PULL_NUMBER: ${{ github.event.pull_request.number }}
+      #env:
+       #PULL_NUMBER: ${{ github.event.pull_request.number }}
       run: |
         curl \
         -X POST \
