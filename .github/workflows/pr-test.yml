@@ -14,10 +14,10 @@ jobs:
       id: build_id
       run: |
         echo " test-pr steps" 
-
+        exit 1
     - uses: Dayanandachari/actions_repo@main
-      #if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
-      if: ${{ success() && steps.build_id.conclusion == 'failure' }}
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
+      #if: ${{ success() && steps.build_id.conclusion == 'failure' }}
 
     - name: Pr message test 
       env:
