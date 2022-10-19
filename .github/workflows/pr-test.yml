@@ -17,7 +17,7 @@ jobs:
         exit 1
     - uses: Dayanandachari/actions_repo@main
       if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
-      #if: ${{ success() && steps.build_id.conclusion == 'failure' }}
+      
     
     # - name: Test
     #   uses: actions/github-script@0.3.0
