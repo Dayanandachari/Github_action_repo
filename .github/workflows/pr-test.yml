@@ -27,7 +27,13 @@ jobs:
         script: |
           const core = require('@actions/core')
           const prNumber = context.payload.number;
-          core.exportVariable('PULL_NUMBER', prNumber);
+          core.exportVariable('PULL_NUMBER', prNumber); 
+    
+    - name: Get Pull Request Number
+      id: pr
+      run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Pr message test 
       id: pr_test
