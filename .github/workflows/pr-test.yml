@@ -16,6 +16,8 @@ jobs:
     #     echo " test-pr steps" 
     #     exit 1
     - uses: Dayanandachari/actions_repo@main
+      env: 
+        OWNER: ${{ Dayanandachari }}
       #if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
     
     # - name: Test
