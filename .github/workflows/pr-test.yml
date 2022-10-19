@@ -17,7 +17,8 @@ jobs:
     #     exit 1
     - uses: Dayanandachari/actions_repo@main
       env: 
-        OWNER: ${{ Dayanandachari }}
+        OWNER: Dayanandachari
+        REPO: Github_action_repo
       #if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
     
     # - name: Test
