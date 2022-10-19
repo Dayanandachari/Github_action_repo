@@ -41,19 +41,22 @@ jobs:
       #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
       # if: ${{ success() }}
       env:
-       PULL_NUMBER: "${{ github.event.pull_request.url }}"
-      run: |
-        echo $PULL_NUMBER
-        echo "${{ github.event.pull_request.pull_request.url }}"
-        echo "${{ github.event.pull_request.pull_request.number }}"
-        echo "${{ github.event.pull_request.url }}"
-        
+       PR_URL: "${{ github.event.pull_request.url }}"
+      run: |        
         # curl \
         # -X POST \
         # -H "Accept: application/vnd.github+json" \
         # -H "Authorization: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" \
         # https://api.github.com/repos/Dayanandachari/Github_action_repo/pulls/PULL_NUMBER/comments \
+        # https://api.github.com/repos/Dayanandachari/Github_action_repo/pulls/5
         # -d '{"body":"Great stuff!","commit_id":"3de9c95287ceda7f6f8528bda9195aca8c34df9b","path":"Github_action_repo/.github/workflows/file.txt","start_line":1,"start_side":"RIGHT","line":2,"side":"RIGHT"}'
+
+        curl \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: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" \
+        $PR_URL \
+        -d '{"body":"Great stuff!","commit_id":"3de9c95287ceda7f6f8528bda9195aca8c34df9b","path":"Github_action_repo/.github/workflows/file.txt","start_line":1,"start_side":"RIGHT","line":2,"side":"RIGHT"}'
       shell: bash
       
       
