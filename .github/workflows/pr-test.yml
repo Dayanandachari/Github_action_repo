@@ -20,7 +20,6 @@ jobs:
       env: 
         OWNER: Dayanandachari
         REPO: Github_action_repo
-        Custom_message: PR_trigger_test 
       if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
        echo " test fail "
       
