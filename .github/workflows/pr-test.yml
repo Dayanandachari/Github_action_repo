@@ -21,6 +21,7 @@ jobs:
         PR_number: 7
         Repo_owner: Dayanandachari
         Repo_name: Github_action_repo
+        Message: "test message "
       if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
        echo " test fail "
     
