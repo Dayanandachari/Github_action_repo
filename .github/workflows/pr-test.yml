@@ -17,9 +17,10 @@ jobs:
     #     exit 1
     - uses: Dayanandachari/actions_repo@main
       id: pr_msg
-      env: 
-        OWNER: Dayanandachari
-        REPO: Github_action_repo
+      with:
+        PR_number: 7
+        Repo_owner: Dayanandachari
+        Repo_name: Github_action_repo
       if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
        echo " test fail "
     
@@ -54,5 +55,14 @@ jobs:
     #       https://api.github.com/repos/Dayanandachari/Github_action_repo/issues/$PR_NUMBER/comments \
     #       -d '{"body":"**Testing** 123"}'
     #   shell: bash
-
       
+      
+# PR_number:
+#     description: Repo PR number 
+#     required: true
+#   Repo_owner:
+#     description: Owner name
+#     required: true
+#   Repo_name:
+#     description: repo  name
+#     required: true
