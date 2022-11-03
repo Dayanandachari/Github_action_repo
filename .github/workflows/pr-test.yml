@@ -18,10 +18,10 @@ jobs:
     - uses: Dayanandachari/actions_repo@main
       id: pr_msg
       with:
-        PR_number: 7
+        PR_number: ${{ github.event.pull_request.number}}
         Repo_owner: Dayanandachari
         Repo_name: Github_action_repo
-        Message: "test message "
+        Message: "test message"
       if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
        echo " test fail "
     
