@@ -10,20 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    # - name:  build step
-    #   id: build_id
-    #   run: |
-    #     echo " test-pr steps" 
-    #     exit 1
+    - name:  build step
+      id: build_id
+      run: |
+        echo " test-pr steps" 
+        exit 1
     - uses: Dayanandachari/actions_repo@main
       id: pr_msg
       with:
         PR_number: ${{ github.event.pull_request.number}}
         Repo_owner: Dayanandachari
         Repo_name: Github_action_repo
-        Message: "test message"
-      if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
-       echo " test fail "
+        Message: "test sucess message"
+      if: ${{ success() }}
+    
+    - uses: Dayanandachari/actions_repo@main
+      id: pr_msg
+      with:
+        PR_number: ${{ github.event.pull_request.number}}
+        Repo_owner: Dayanandachari
+        Repo_name: Github_action_repo
+        Message: "test failure message"
+      if: ${{ failure() }}
     
     # - name: Test
     #   uses: actions/github-script@0.3.0
