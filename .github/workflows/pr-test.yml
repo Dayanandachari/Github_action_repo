@@ -1,28 +1,45 @@
 name: PR test workflow
 
 on: 
- pull_request:
-   branches: 
-     - main
+#  pull_request:
+#    branches: 
+#      - main
+ workflow_dispatch:
+    inputs:
+      branch:
+        description: Run manually
+        required: true
+        default: 'main'
+          
+   
 
 jobs:
   test-pr: 
     runs-on: ubuntu-latest
 
     steps: 
-    # - name:  build step
-    #   id: build_id
-    #   run: |
-    #     echo " test-pr steps" 
-    #     exit 1
+    - name:  build step
+      id: build_id
+      run: |
+        echo " test-pr steps" 
+        exit 0
     - uses: Dayanandachari/actions_repo@main
-      id: pr_msg
+  
       with:
-        PR_number: 7
-        Repo_owner: Dayanandachari
-        Repo_name: Github_action_repo
-      if: ${{ success() && steps.pr_msg.conclusion == 'success' }}
-       echo " test fail "
+        PR_number: ${{ github.event.pull_request.number}}
+        Repo_owner: ${{ github.event.owner}}
+        Repo_name: ${{ github.event.repository.name}}
+        Message: "test sucess message"
+      if: ${{ success() }}
+    
+    - uses: Dayanandachari/actions_repo@main
+     
+      with:
+        PR_number: ${{ github.event.pull_request.number}}
+        Repo_owner: ${{ github.event.owner}}
+        Repo_name:  ${{ github.event.repository.name}}
+        Message: "test failure message"
+      if: ${{ failure() }}
     
     # - name: Test
     #   uses: actions/github-script@0.3.0
@@ -66,5 +83,3 @@ jobs:
 #   Repo_name:
 #     description: repo  name
 #     required: true
-
-
