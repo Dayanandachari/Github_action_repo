@@ -18,12 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - name:  build step
     - uses: Dayanandachari/actions_repo@main
       env:
          GITHUB_TOKEN: ${{ github.token }}
          Message: "test sucess message"
-      if: ${{ success() }}
+      
     
     
     
