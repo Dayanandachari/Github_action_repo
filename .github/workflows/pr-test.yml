@@ -19,8 +19,8 @@ jobs:
   
       with:
         PR_number: ${{ github.event.pull_request.number}}
-        Repo_owner: Dayanandachari
-        Repo_name: Github_action_repo
+        Repo_owner: ${{ github.event.owner}}
+        Repo_name: ${{ github.event.repository}}
         Message: "test sucess message"
       if: ${{ success() }}
     
@@ -28,8 +28,8 @@ jobs:
      
       with:
         PR_number: ${{ github.event.pull_request.number}}
-        Repo_owner: Dayanandachari
-        Repo_name: Github_action_repo
+        Repo_owner: ${{ github.event.owner}}
+        Repo_name: ${{ github.event.repository}}
         Message: "test failure message"
       if: ${{ failure() }}
     
