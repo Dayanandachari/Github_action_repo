@@ -5,6 +5,10 @@ on:
    branches: 
      - main
  workflow_dispatch:
+    inputs:
+      github_action:
+        description: Run manually
+        required: true
    
 
 jobs:
