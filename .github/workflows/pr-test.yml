@@ -1,14 +1,16 @@
 name: PR test workflow
 
 on: 
- pull_request:
-   branches: 
-     - main
+#  pull_request:
+#    branches: 
+#      - main
  workflow_dispatch:
     inputs:
       github_action:
         description: Run manually
         required: true
+    branches: 
+        - main
    
 
 jobs:
