@@ -9,8 +9,8 @@ on:
       github_action:
         description: Run manually
         required: true
-    branches: 
-        - main
+        default: 'main'
+          
    
 
 jobs:
