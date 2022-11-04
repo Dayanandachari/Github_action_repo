@@ -6,7 +6,7 @@ on:
      - main
  workflow_dispatch:
     inputs:
-      github_action:
+      branch:
         description: Run manually
         required: true
         default: 'main'
