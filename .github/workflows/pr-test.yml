@@ -18,60 +18,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - name:  build step
-      id: build_id
-      run: |
-        echo " test-pr steps" 
-        exit 0
-    - uses: Dayanandachari/actions_repo@main
+#     - name:  build step
+#       id: build_id
+#       run: |
+#         echo " test-pr steps" 
+#         exit 0
+#     - uses: Dayanandachari/actions_repo@main
   
-      with:
-        PR_number: ${{ github.event.pull_request.number}}
-        Repo_owner: ${{ github.event.owner}}
-        Repo_name: ${{ github.event.repository.name}}
-        Message: "test sucess message"
-      if: ${{ success() }}
+#       with:
+#         PR_number: ${{ github.event.pull_request.number}}
+#         Repo_owner: ${{ github.event.owner}}
+#         Repo_name: ${{ github.event.repository.name}}
+#         Message: "test sucess message"
+#       if: ${{ success() }}
     
-    - uses: Dayanandachari/actions_repo@main
+#     - uses: Dayanandachari/actions_repo@main
      
+#       with:
+#         PR_number: ${{ github.event.pull_request.number}}
+#         Repo_owner: ${{ github.event.owner}}
+#         Repo_name:  ${{ github.event.repository.name}}
+#         Message: "test failure message"
+#       if: ${{ failure() }}
+    
+    - name: Test
+      uses: actions/github-script@0.3.0
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
       with:
-        PR_number: ${{ github.event.pull_request.number}}
-        Repo_owner: ${{ github.event.owner}}
-        Repo_name:  ${{ github.event.repository.name}}
-        Message: "test failure message"
-      if: ${{ failure() }}
+        github-token: ${{github.token}}
+        script: |
+          const core = require('@actions/core')
+          const prNumber = context.payload.number;
+          core.exportVariable('PULL_NUMBER', prNumber); 
     
-    # - name: Test
-    #   uses: actions/github-script@0.3.0
-    #   if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
-    #   with:
-    #     github-token: ${{github.token}}
-    #     script: |
-    #       const core = require('@actions/core')
-    #       const prNumber = context.payload.number;
-    #       core.exportVariable('PULL_NUMBER', prNumber); 
-    
-    # - name: Get Pull Request Number
-    #   if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
-    #   id: pr
-    #   run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Get Pull Request Number
+      if: ${{ failure() && steps.build_id.conclusion == 'failure' }}
+      id: pr
+      run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-    # - name: Pr message test 
-    #   id: pr_test
-    #   #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
-    #   env:
-    #    PR_NUMBER: "${{ github.event.number }}"
-    #    GITHUB_TOKEN: ${{ github.token }}
-    #   run: |        
-    #       curl \
-    #       -X POST \
-    #       -H "Accept: application/vnd.github+json" \
-    #       -H "Authorization: token $GITHUB_TOKEN " \
-    #       https://api.github.com/repos/Dayanandachari/Github_action_repo/issues/$PR_NUMBER/comments \
-    #       -d '{"body":"**Testing** 123"}'
-    #   shell: bash
+    - name: Pr message test 
+      id: pr_test
+      #if: ${{ failure() && steps.pr_test.conclusion == 'failure' }}
+      env:
+       PR_NUMBER: "${{ github.event.number }}"
+       GITHUB_TOKEN: ${{ github.token }}
+      run: |        
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: token $GITHUB_TOKEN " \
+          https://api.github.com/repos/Dayanandachari/Github_action_repo/issues/$PR_NUMBER/comments \
+          -d '{"body":"**Testing** 123"}'
+      shell: bash
       
       
 # PR_number:
