@@ -11,7 +11,6 @@ on:
         required: true
         default: 'main'
           
-   
 
 jobs:
   test-pr: 
@@ -23,8 +22,8 @@ jobs:
       run: |
         echo " test-pr steps" 
         exit 0
+        
     - uses: Dayanandachari/actions_repo@main
-  
       with:
         PR_number: ${{ github.event.pull_request.number}}
         Repo_owner: ${{ github.event.owner}}
@@ -33,7 +32,6 @@ jobs:
       if: ${{ success() }}
     
     - uses: Dayanandachari/actions_repo@main
-     
       with:
         PR_number: ${{ github.event.pull_request.number}}
         Repo_owner: ${{ github.event.owner}}
