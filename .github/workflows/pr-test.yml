@@ -21,7 +21,7 @@ jobs:
       id: build_id
       run: |
         echo " test-pr steps" 
-        exit 0
+        exit 1
         
     - uses: Dayanandachari/actions_repo@main
       with:
