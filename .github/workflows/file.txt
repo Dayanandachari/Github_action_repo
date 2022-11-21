@@ -1,3 +1,5 @@
+name: input manually trigger test
+
 on:
   workflow_dispatch:
     inputs:
